@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('phone_number');
             $table->string('address')->nullable();
-            $table->integer('gender');
-            $table->unsignedBigInteger('status');
+            $table->integer('gender'); 
             $table->string('avatar')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');

@@ -13,13 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attribute_product', function (Blueprint $table) {
+        Schema::create('refund_export_shipment_details', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('refund_export_shipment_id');
+            $table->foreign('refund_export_shipment_id')->references('id')->on('refund_export_shipments');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedBigInteger('attribute_id');
-            $table->foreign('attribute_id')->references('id')->on('attributes');
-            $table->float('price');
+            $table->integer('quantity');
+            $table->float('export_price');
+            $table->float('refund_price')->nullable();
+            $table->string('lot_code')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
@@ -31,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attribute_product');
+        Schema::dropIfExists('refund_export_shipment_details');
     }
 };

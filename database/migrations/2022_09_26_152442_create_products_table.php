@@ -19,13 +19,13 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('name');
-            $table->float('import_price');
+            $table->string('sku');
             $table->float('price');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('status');
             $table->string('image')->nullable();
-            $table->timestamp('warranty_date')->nullable();
+            $table->tinyInteger('warranty_date')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
